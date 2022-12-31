@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-decorator-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 18.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madeindra/nodejs-decorator-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madeindra/nodejs-decorator-example/issues"
+  },
+  "homepage": "https://github.com/madeindra/nodejs-decorator-example#readme"
+}
