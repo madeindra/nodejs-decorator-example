@@ -9,8 +9,8 @@ const { route } = require('./decorator');
 // mock database
 const db = new Map();
 
-@route
 class Server {
+  @route
   static async handler(req, res) {
     if (req.method === 'POST') {
       const data = await once(req, 'data');
@@ -20,14 +20,16 @@ class Server {
 
       db.set(item.id, item);
 
-      res.writeHead(201);
-      return res.end(JSON.stringify({ data: item }));
+      return {
+        statusCode: 201,
+        data: item,
+      };
     }
 
-    res.writeHead(200);
-    return res.end(JSON.stringify({
+    return {
+      statusCode: 200,
       data: [...db.values()],
-    }));
+    };
   }
 }
 
