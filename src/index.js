@@ -6,6 +6,9 @@ const { createServer } = require('http');
 // import decorator
 const { route, time } = require('./decorator');
 
+// timer
+const { setTimeout } = require('timers/promises');
+
 // mock database
 const db = new Map();
 
@@ -13,6 +16,9 @@ class Server {
   @time
   @route // must be first above method
   static async handler(req, res) {
+    // this line is to simulate latency
+    await setTimeout(parseInt(Math.random() * 100))
+
     if (req.method === 'POST') {
       const data = await once(req, 'data');
       const item = JSON.parse(data);
