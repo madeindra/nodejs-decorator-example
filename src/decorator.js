@@ -1,6 +1,5 @@
 // import dependencies
 const { randomUUID } = require('crypto');
-const UI = require('./interface');
 
 // flags
 const isUiDisabled = process.env.UI_DISABLED;
@@ -9,6 +8,8 @@ const isUiDisabled = process.env.UI_DISABLED;
 let ui;
 
 if (!isUiDisabled) {
+  // must be here to prevent screen initialization
+  const UI = require('./interface');
   ui = new UI();
 } else {
   ui = {
