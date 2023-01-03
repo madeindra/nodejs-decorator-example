@@ -4,13 +4,14 @@ const { once } = require('events');
 const { createServer } = require('http');
 
 // import decorator
-const { route } = require('./decorator');
+const { route, time } = require('./decorator');
 
 // mock database
 const db = new Map();
 
 class Server {
-  @route
+  @time
+  @route // must be first above method
   static async handler(req, res) {
     if (req.method === 'POST') {
       const data = await once(req, 'data');
