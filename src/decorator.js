@@ -1,6 +1,13 @@
 // import dependencies
 const { randomUUID } = require('crypto');
 
+// this is logger function
+function logger (...args) {
+  if (process.env.UI_DISABLED){
+    console.log(...args);
+  }
+}
+
 // this is route decorator
 function route(target, { kind, name }) {
   // if it is not method, do nothing and return target
@@ -57,7 +64,7 @@ function requestEnded({ data, res, start }) {
   data.data =  res.data;
   data.elapsed = rounded.toFixed(2).concat('ms');
 
-  console.log('benchmark', data);
+  logger('benchmark', data);
 }
 
 module.exports = {
