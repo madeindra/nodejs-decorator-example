@@ -44,8 +44,7 @@ function time (target, { kind, name }) {
   }
 
   return async function (req, res) {
-    const start = performance.now();
-
+    const requestStartAt = performance.now();
 
     const end = target.apply(this, [req, res]);
     const data = {
@@ -59,7 +58,7 @@ function time (target, { kind, name }) {
       requestEnded({
         data,
         res,
-        start,
+        requestStartAt,
       });
     });
 
@@ -68,9 +67,9 @@ function time (target, { kind, name }) {
 }
 
 // requestEnded function
-function requestEnded({ data, res, start }) {
-  const end = performance.now();
-  const timeDiff = end - start;
+function requestEnded({ data, res, requestStartAt }) {
+  const requestEndAt = performance.now();
+  const timeDiff = requestEndAt - requestStartAt;
   const rounded = Math.round(timeDiff);
 
   data.statusCode = res.statusCode;
