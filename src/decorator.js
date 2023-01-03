@@ -11,7 +11,9 @@ let ui;
 if (!isUiDisabled) {
   ui = new UI();
 } else {
-  ui = {};
+  ui = {
+    updateGraph: () => {},
+  };
 }
 
 // this is logger function
