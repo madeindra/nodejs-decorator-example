@@ -1,9 +1,22 @@
 // import dependencies
 const { randomUUID } = require('crypto');
+const UI = require('./interface');
+
+// flags
+const isUiDisabled = process.env.UI_DISABLED;
+
+// this is ui instance
+let ui;
+
+if (!isUiDisabled) {
+  ui = new UI();
+} else {
+  ui = {};
+}
 
 // this is logger function
 function logger (...args) {
-  if (process.env.UI_DISABLED){
+  if (isUiDisabled){
     console.log(...args);
   }
 }
@@ -65,6 +78,8 @@ function requestEnded({ data, res, start }) {
   data.elapsed = rounded.toFixed(2).concat('ms');
 
   logger('benchmark', data);
+
+  ui.updateGraph(data.method, rounded);
 }
 
 module.exports = {
